@@ -47,14 +47,14 @@ type field struct {
 func ParseConfig() (err error) {
 	defer func() {
 		if r := recover(); r != nil {
-			switch r.(type) {
+			switch val := r.(type) {
 			case string:
-				err = fmt.Errorf(r.(string))
+				err = fmt.Errorf("%s", val)
 			case error:
-				err = r.(error)
+				err = val
 			default:
 				err = fmt.Errorf("undefined error")
-			}
+			}			
 		}
 	}()
 
@@ -88,7 +88,7 @@ func setDefaultValues(s interface{}) {
 	t = value.Type()
 
 	if t.Kind() != reflect.Struct {
-		panicf("s isn't structure, but ", t.Kind().String())
+		panicf("s isn't structure, but %s", t.Kind().String())
 	}
 
 	var defValues []field
@@ -132,7 +132,7 @@ func setValues(s interface{}, values []field) {
 
 	// value of struct (ptr -> struct)
 	if value.Elem().Type().Kind() != reflect.Struct {
-		panicf("s isn't structure, but ", t.Kind().String())
+		panicf("s isn't structure, but %s", t.Kind().String())
 	}
 
 	// value of the struct (ptr -> struct)
@@ -151,5 +151,5 @@ func setValues(s interface{}, values []field) {
 }
 
 func panicf(format string, v ...interface{}) {
-	panic(fmt.Sprintf(format, v))
+	panic(fmt.Sprintf(format, v...))
 }

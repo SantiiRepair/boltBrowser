@@ -16,10 +16,10 @@ import (
 //
 // Params: dbPath, readOnly
 // Return:
-// {
-//  "dbPath": str
-// }
 //
+//	{
+//	 "dbPath": str
+//	}
 func openDB(w http.ResponseWriter, r *http.Request) {
 	dbPath := r.FormValue("dbPath")
 	readOnly := (r.FormValue("readOnly") == "true")
@@ -45,10 +45,10 @@ func openDB(w http.ResponseWriter, r *http.Request) {
 
 // Params: path
 // Return:
-// {
-// 	"dbPath": str
-// }
 //
+//	{
+//		"dbPath": str
+//	}
 func createDB(w http.ResponseWriter, r *http.Request) {
 	path := r.FormValue("path")
 
@@ -71,7 +71,6 @@ func createDB(w http.ResponseWriter, r *http.Request) {
 
 // Params: dbPath
 // Return: -
-//
 func closeDB(w http.ResponseWriter, r *http.Request) {
 	dbPath := r.FormValue("dbPath")
 
@@ -87,21 +86,21 @@ func closeDB(w http.ResponseWriter, r *http.Request) {
 //
 // Params: dbPath, bucket
 // Return:
-// {
-// 	"prevBucket": bool,
-//  "prevRecords": bool,
-//  "nextRecords": bool,
-//  "bucketsPath": string,
-//	"recordsAmount": int,
-// 	"records": [
-// 	  {
-// 		"type": "",
-// 		"key": "",
-// 		"value": ""
-// 	  },
-// 	]
-// }
 //
+//	{
+//		"prevBucket": bool,
+//	 "prevRecords": bool,
+//	 "nextRecords": bool,
+//	 "bucketsPath": string,
+//		"recordsAmount": int,
+//		"records": [
+//		  {
+//			"type": "",
+//			"key": "",
+//			"value": ""
+//		  },
+//		]
+//	}
 func next(w http.ResponseWriter, r *http.Request) {
 	dbPath := r.FormValue("dbPath")
 	nextBucket := r.FormValue("bucket")
@@ -137,21 +136,21 @@ func next(w http.ResponseWriter, r *http.Request) {
 //
 // Params: dbPath
 // Return:
-// {
-// 	"prevBucket": bool,
-//  "prevRecords": bool,
-//  "nextRecords": bool,
-//  "bucketsPath": string,
-//	"recordsAmount": int,
-// 	"records": [
-//   {
-// 	   "type": "",
-// 	   "key": "",
-// 	   "value": ""
-// 	 },
-// 	]
-// }
 //
+//	{
+//		"prevBucket": bool,
+//	 "prevRecords": bool,
+//	 "nextRecords": bool,
+//	 "bucketsPath": string,
+//		"recordsAmount": int,
+//		"records": [
+//	  {
+//		   "type": "",
+//		   "key": "",
+//		   "value": ""
+//		 },
+//		]
+//	}
 func back(w http.ResponseWriter, r *http.Request) {
 	dbPath := r.FormValue("dbPath")
 
@@ -187,21 +186,21 @@ func back(w http.ResponseWriter, r *http.Request) {
 //
 // Params: dbPath
 // Return:
-// {
-// 	"prevBucket": bool,
-//  "prevRecords": bool,
-//  "nextRecords": bool,
-//  "bucketsPath": string,
-//	"recordsAmount": int,
-// 	"records": [
-// 	 {
-// 	   "type": "",
-// 	   "key": "",
-// 	   "value": ""
-// 	 },
-// 	]
-// }
 //
+//	{
+//		"prevBucket": bool,
+//	 "prevRecords": bool,
+//	 "nextRecords": bool,
+//	 "bucketsPath": string,
+//		"recordsAmount": int,
+//		"records": [
+//		 {
+//		   "type": "",
+//		   "key": "",
+//		   "value": ""
+//		 },
+//		]
+//	}
 func root(w http.ResponseWriter, r *http.Request) {
 	dbPath := r.FormValue("dbPath")
 
@@ -237,13 +236,14 @@ func root(w http.ResponseWriter, r *http.Request) {
 // Params: -
 // Return:
 // [
-//	{
-// 	  "name": "",
-//    "dbPath": "",
-// 	  "size": 0
-// 	},
-// ]
 //
+//		{
+//		  "name": "",
+//	   "dbPath": "",
+//		  "size": 0
+//		},
+//
+// ]
 func databasesList(w http.ResponseWriter, r *http.Request) {
 	list := dbs.GetDBsList()
 
@@ -255,27 +255,27 @@ func databasesList(w http.ResponseWriter, r *http.Request) {
 //
 // Params: dbPath
 // Return:
-// {
-//  "db" : {
-//    "name": "",
-// 	  "dbPath": "",
-//    "size": 0,
-//    "readOnly": bool
-//  },
-//  "prevBucket": bool,
-//  "prevRecords": bool,
-//  "nextRecords": bool,
-//  "bucketsPath": string,
-//	"recordsAmount": int,
-// 	"records": [
-// 	  {
-// 	    "type": "",
-// 		"key": "",
-// 		"value": ""
-// 	  },
-// 	]
-// }
 //
+//	{
+//	 "db" : {
+//	   "name": "",
+//		  "dbPath": "",
+//	   "size": 0,
+//	   "readOnly": bool
+//	 },
+//	 "prevBucket": bool,
+//	 "prevRecords": bool,
+//	 "nextRecords": bool,
+//	 "bucketsPath": string,
+//		"recordsAmount": int,
+//		"records": [
+//		  {
+//		    "type": "",
+//			"key": "",
+//			"value": ""
+//		  },
+//		]
+//	}
 func current(w http.ResponseWriter, r *http.Request) {
 	dbPath := r.FormValue("dbPath")
 
@@ -312,20 +312,20 @@ func current(w http.ResponseWriter, r *http.Request) {
 //
 // Params: dbPath
 // Return:
-// {
-//  "prevBucket": bool,
-//  "prevRecords": bool,
-//  "nextRecords": bool,
-//	"recordsAmount": int,
-// 	"records": [
-// 	  {
-// 	    "type": "",
-// 		"key": "",
-// 		"value": ""
-// 	  },
-// 	]
-// }
 //
+//	{
+//	 "prevBucket": bool,
+//	 "prevRecords": bool,
+//	 "nextRecords": bool,
+//		"recordsAmount": int,
+//		"records": [
+//		  {
+//		    "type": "",
+//			"key": "",
+//			"value": ""
+//		  },
+//		]
+//	}
 func nextRecords(w http.ResponseWriter, r *http.Request) {
 	dbPath := r.FormValue("dbPath")
 
@@ -358,21 +358,21 @@ func nextRecords(w http.ResponseWriter, r *http.Request) {
 //
 // Params: dbPath
 // Return:
-// {
-//  "prevBucket": bool,
-//  "prevRecords": bool,
-//  "nextRecords": bool,
-//  "bucketsPath": string,
-//	"recordsAmount": int,
-// 	"records": [
-// 	  {
-// 	    "type": "",
-// 		"key": "",
-// 		"value": ""
-// 	  },
-// 	]
-// }
 //
+//	{
+//	 "prevBucket": bool,
+//	 "prevRecords": bool,
+//	 "nextRecords": bool,
+//	 "bucketsPath": string,
+//		"recordsAmount": int,
+//		"records": [
+//		  {
+//		    "type": "",
+//			"key": "",
+//			"value": ""
+//		  },
+//		]
+//	}
 func prevRecords(w http.ResponseWriter, r *http.Request) {
 	dbPath := r.FormValue("dbPath")
 
@@ -405,21 +405,21 @@ func prevRecords(w http.ResponseWriter, r *http.Request) {
 //
 // Params: dbPath, text, mode ("regex" or "plain")
 // Return:
-// {
-//  "prevBucket": bool,
-//  "prevRecords": bool,
-//  "nextRecords": bool,
-//  "bucketsPath": string,
-//	"recordsAmount": int,
-// 	"records": [
-// 	  {
-// 	    "type": "",
-// 		"key": "",
-// 		"value": ""
-// 	  },
-// 	]
-// }
 //
+//	{
+//	 "prevBucket": bool,
+//	 "prevRecords": bool,
+//	 "nextRecords": bool,
+//	 "bucketsPath": string,
+//		"recordsAmount": int,
+//		"records": [
+//		  {
+//		    "type": "",
+//			"key": "",
+//			"value": ""
+//		  },
+//		]
+//	}
 func search(w http.ResponseWriter, r *http.Request) {
 	dbPath := r.FormValue("dbPath")
 	text := r.FormValue("text")
@@ -474,7 +474,6 @@ func returnError(w http.ResponseWriter, err error, message string, code int) {
 //
 // Params: dbPath, bucket
 // Return: -
-//
 func addBucket(w http.ResponseWriter, r *http.Request) {
 	dbPath := r.FormValue("dbPath")
 	bucket := r.FormValue("bucket")
@@ -492,7 +491,6 @@ func addBucket(w http.ResponseWriter, r *http.Request) {
 //
 // Params: dbPath, oldName, newName
 // Return: -
-//
 func editBucketName(w http.ResponseWriter, r *http.Request) {
 	dbPath := r.FormValue("dbPath")
 	oldName := r.FormValue("oldName")
@@ -511,7 +509,6 @@ func editBucketName(w http.ResponseWriter, r *http.Request) {
 //
 // Params: dbPath, bucket (int URI)
 // Return: -
-//
 func deleteBucket(w http.ResponseWriter, r *http.Request) {
 	dbPath := r.FormValue("dbPath")
 	bucket := r.FormValue("bucket")
@@ -529,7 +526,6 @@ func deleteBucket(w http.ResponseWriter, r *http.Request) {
 //
 // Params: dbPath, key, value
 // Return: -
-//
 func addRecord(w http.ResponseWriter, r *http.Request) {
 	dbPath := r.FormValue("dbPath")
 	key := r.FormValue("key")
@@ -548,7 +544,6 @@ func addRecord(w http.ResponseWriter, r *http.Request) {
 //
 // Params: dbPath, oldKey, newKey, newValue
 // Return: -
-//
 func editRecord(w http.ResponseWriter, r *http.Request) {
 	dbPath := r.FormValue("dbPath")
 	oldKey := r.FormValue("oldKey")
@@ -568,7 +563,6 @@ func editRecord(w http.ResponseWriter, r *http.Request) {
 //
 // Params: dbPath, key (int URI)
 // Return: -
-//
 func deleteRecord(w http.ResponseWriter, r *http.Request) {
 	dbPath := r.FormValue("dbPath")
 	key := r.FormValue("key")
